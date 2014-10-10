@@ -2,7 +2,7 @@
 
 - [x] Read input.
 - [x] Split up input.
-- [ ] Create Class and Student classes.
+- [x] Create Class and Student classes.
 - [ ] Create temporary sort.
 
 ## Next
