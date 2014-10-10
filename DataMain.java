@@ -11,12 +11,9 @@ public class DataMain
 {
   public static void main(String[] args) throws IOException
   {
-	  BufferedReader brInput = new BufferedReader(new FileReader("InputFile.txt"));
-	  //Scanner input = new Scanner(new File("InputFile.txt"));
+	BufferedReader brInput = new BufferedReader(new FileReader("InputFile.txt"));
 
     int numClasses = (int)brInput.read() - '0';
-
-    System.out.println(numClasses);
 
     ArrayList<ArrayList> database = new ArrayList<ArrayList>(numClasses);
     
@@ -31,12 +28,7 @@ public class DataMain
     }
     
     String[] splitFile = wholeFile.split("\n");
-    for(int i = 0; i < splitFile.length; i++)
-    	System.out.println(splitFile[i] + "\n");
-    
-    //System.out.println(splitFile);
-    
-    //System.out.println(wholeFile);
-    
+
+       
   }
 }
