@@ -1,9 +1,7 @@
 ## To Do
 
-- [x] Read input.
-- [x] Split up input.
-- [x] Create Class and Student classes.
 - [ ] Create temporary sort.
+- [ ] Read input in temporarily.
 
 ## Next
 
