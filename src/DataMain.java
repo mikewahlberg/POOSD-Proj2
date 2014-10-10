@@ -15,7 +15,7 @@ public class DataMain
 
     int numClasses = (int)brInput.read() - '0';
 
-    ArrayList<ArrayList> database = new ArrayList<ArrayList>(numClasses);
+    ArrayList<ArrayList<Class>> database = new ArrayList<ArrayList<Class>>(numClasses);
     
     String wholeFile = "", temp;
     
