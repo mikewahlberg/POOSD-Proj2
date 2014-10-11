@@ -15,9 +15,11 @@ public class DataMain
 
     int numClasses = (int)brInput.read() - '0';
 
-    ArrayList<ArrayList<Class>> database = new ArrayList<ArrayList<Class>>(numClasses);
+    ArrayList<Class> database = new ArrayList<Class>(numClasses);
     
-    String wholeFile = "", temp;
+    String wholeFile = "", temp, date;
+    String classTitle;
+    int timeSpent, videosWatched, arrListCount = -1;
     
     //Create String with each line not including blank lines.
     while((temp = brInput.readLine()) != null)
@@ -28,7 +30,42 @@ public class DataMain
     }
     
     String[] splitFile = wholeFile.split("\n");
+//    for(int i = 0; i < splitFile.length; i++)
+//    	System.out.println(splitFile[i]);
+    
+    int i = 0;
+    while(i < splitFile.length)
+    {
+    	if(numSpaces(splitFile[i]) > 1)
+    	{
+    		arrListCount++;
+    		database.add(new Class(splitFile[i++]));
+    	}
+    	
+    	String[] fullName;
+    	fullName = splitFile[i++].split(" ");
+    	
+    	date = splitFile[i++];
+    	timeSpent = Integer.parseInt(splitFile[i++]);
+    	videosWatched = Integer.parseInt(splitFile[i++]);
+    	
+    	database.get(arrListCount).addStudent(new Student(fullName[0], fullName[1], timeSpent, videosWatched));
+    	//i++;
+    }
 
        
+  }
+  
+  public static int numSpaces(String temp)
+  {
+	  int count = 0;
+	  
+	  for(int i = 0; i < temp.length(); i++)
+	  {
+		  if(temp.charAt(i) == ' ')
+			  count++;
+	  }
+	  
+	  return count;
   }
 }
