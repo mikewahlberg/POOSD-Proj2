@@ -7,6 +7,9 @@ import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javafx.*;
+
+@SuppressWarnings("unused")
 public class DataMain
 {
   public static void main(String[] args) throws IOException
@@ -19,7 +22,8 @@ public class DataMain
     
     String wholeFile = "", temp, date;
     String classTitle;
-    int timeSpent, videosWatched, arrListCount = -1;
+    String timeSpent, videosWatched;
+    int arrListCount = -1;
     
     //Create String with each line not including blank lines.
     while((temp = brInput.readLine()) != null)
@@ -30,29 +34,32 @@ public class DataMain
     }
     
     String[] splitFile = wholeFile.split("\n");
-//    for(int i = 0; i < splitFile.length; i++)
-//    	System.out.println(splitFile[i]);
+    //for(int i = 0; i < splitFile.length; i++)
+    //	System.out.println(splitFile[i]);
     
     int i = 0;
-    while(i < splitFile.length)
+    while(i < splitFile.length-1)
     {
     	if(numSpaces(splitFile[i]) > 1)
     	{
+    		System.out.println(splitFile[i] + " " + database.size());
     		arrListCount++;
     		database.add(new Class(splitFile[i++]));
     	}
     	
     	String[] fullName;
     	fullName = splitFile[i++].split(" ");
-    	
     	date = splitFile[i++];
-    	timeSpent = Integer.parseInt(splitFile[i++]);
-    	videosWatched = Integer.parseInt(splitFile[i++]);
+    	timeSpent = splitFile[i++];
+    	videosWatched = splitFile[i++];
     	
-    	database.get(arrListCount).addStudent(new Student(fullName[0], fullName[1], timeSpent, videosWatched));
-    	//i++;
+    	database.get(arrListCount).addStudent(new Student(fullName[0], fullName[1], Integer.parseInt(timeSpent), Integer.parseInt(videosWatched), date));
+    	
+    	
     }
-
+    
+    for(int j = 0; j < arrListCount; j++)
+    	System.out.println(database.get(j));
        
   }
   
@@ -60,7 +67,8 @@ public class DataMain
   {
 	  int count = 0;
 	  
-	  for(int i = 0; i < temp.length(); i++)
+	  //The loop looks at the second to last character since the last character could be a space.
+	  for(int i = 0; i < temp.length()-1; i++)
 	  {
 		  if(temp.charAt(i) == ' ')
 			  count++;
