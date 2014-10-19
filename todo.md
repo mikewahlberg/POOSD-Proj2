@@ -1,11 +1,13 @@
 ## To Do
 
-- [ ] Create temporary sort.
-- [ ] Read input in temporarily.
+- [x] Create temporary sort.
+- [x] Read input in temporarily.
+- [ ] Fix input.
+
 
 ## Next
 
-- [ ] Look into more advanced sort.
+- [x] Look into more advanced sort.
 - [ ] Create GUI.
 - [ ] Light testing.
 - [ ] Export Jar.
