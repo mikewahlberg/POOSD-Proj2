@@ -18,7 +18,7 @@ public class DataMain
 
     int numClasses = (int)brInput.read() - '0';
 
-    ArrayList<Class> database = new ArrayList<Class>(numClasses);
+    ArrayList<Class> database = new ArrayList<Class>();
     
     String wholeFile = "", temp, date;
     String classTitle;
@@ -32,34 +32,42 @@ public class DataMain
     		continue;
     	wholeFile += temp + "\n";
     }
+    brInput.close();
     
     String[] splitFile = wholeFile.split("\n");
     //for(int i = 0; i < splitFile.length; i++)
     //	System.out.println(splitFile[i]);
     
+    Class tempClass;
     int i = 0;
-    while(i < splitFile.length-1)
+    while(i < splitFile.length)
     {
-    	if(numSpaces(splitFile[i]) > 1)
+    	if(splitFile[i+2].split("/").length == 3)
     	{
-    		System.out.println(splitFile[i] + " " + database.size());
+    		//System.out.println(splitFile[i] + " " + database.size() + " " + (arrListCount+1));
     		arrListCount++;
-    		database.add(new Class(splitFile[i++]));
+    		database.add(arrListCount, new Class(splitFile[i++]));
+    	}
+    	else
+    	{
+	    	String[] fullName;
+	    	fullName = splitFile[i++].split(" ");
+	    	date = splitFile[i++];
+	    	timeSpent = splitFile[i++];
+	    	videosWatched = splitFile[i++];
+	    	
+	    	database.get(database.size()-1).addStudent(new Student(fullName[0], fullName[1], Integer.parseInt(timeSpent), Integer.parseInt(videosWatched), date));
+	    	
     	}
     	
-    	String[] fullName;
-    	fullName = splitFile[i++].split(" ");
-    	date = splitFile[i++];
-    	timeSpent = splitFile[i++];
-    	videosWatched = splitFile[i++];
-    	
-    	database.get(arrListCount).addStudent(new Student(fullName[0], fullName[1], Integer.parseInt(timeSpent), Integer.parseInt(videosWatched), date));
-    	
+//    	for(int j = 0; j < database.size(); j++)
+//    		System.out.println(database.get(j));
     	
     }
     
-    for(int j = 0; j < arrListCount; j++)
-    	System.out.println(database.get(j));
+    for(int j = 0; j < database.size(); j++)
+		System.out.println(database.get(j));
+    
        
   }
   

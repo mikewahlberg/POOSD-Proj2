@@ -1,30 +1,36 @@
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Class implements Comparable{
-	static ArrayList<Student> roster = new ArrayList<Student>();
+public class Class{
+	
+	static ArrayList<Student> roster;
 	String className;
+	int arrCount = 0;
 	
 	Class(String title)
 	{
 		className = title;
+		roster = new ArrayList<Student>();
 	}
 	
 	public void addStudent(Student tempStud)
 	{
 		roster.add(tempStud);
-		//System.out.println(tempStud);
+		arrCount++;
+		System.out.println("ADDING TO " + className + ": \n" + tempStud);
 	}
 	
 	public String toString()
 	{
-		String s = className + "\n" + "Class Size: " + roster.size() + "\n";
+		System.out.println(className + "\n" + "Class Size: " + roster.size() + "\n");
+		
+		String s = "";
 		
 		//sortVideos();
 		
 		for(int i = 0; i < roster.size(); i++)
 		{
-			s += roster.get(i);
+			System.out.println(roster.get(i));
 		}
 		
 		return s;
@@ -180,11 +186,7 @@ public class Class implements Comparable{
 		return roster.get(pos) + "\n" + roster.get(pos-1) + "\n" + roster.get(pos-2);
 	}
 
-	@Override
-	public int compareTo(Object arg0) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 	
 	//The sort functions, all except course name. 
 	//Utilize MergeSort.
@@ -223,34 +225,34 @@ public class Class implements Comparable{
 	 *  - 5 = Videos
 	 */
 	
-	public static ArrayList<Student> mergeBase(ArrayList<Student> studs, int which)
+	public static ArrayList<Student> mergeBase(ArrayList<Student> roster2, int which)
 	{
 		ArrayList<Student> left = new ArrayList<Student>();
 		ArrayList<Student> right = new ArrayList<Student>();
-		int middle = studs.size()/2;
+		int middle = roster2.size()/2;
 		
-		if(studs.size() == 1)
-			return studs;
+		if(roster2.size() == 1)
+			return roster2;
 		
 		else
 		{
 			for(int i = 0; i < middle; i++)
 			{
-				left.add(studs.get(i));
+				left.add(roster2.get(i));
 			}
 			
-			for(int i = middle; i < studs.size(); i++)
+			for(int i = middle; i < roster2.size(); i++)
 			{
-				right.add(studs.get(i));
+				right.add(roster2.get(i));
 			}
 			
 			left = mergeBase(left, which);
 			right = mergeBase(right, which);
 			
-			merge(left, right, studs, which);
+			merge(left, right, roster2, which);
 		}
 		
-		return studs;
+		return roster2;
 	}
 	
 	public static void merge(ArrayList<Student> left, ArrayList<Student> right, ArrayList<Student> studs, int which)
